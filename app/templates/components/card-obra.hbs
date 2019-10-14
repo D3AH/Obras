@@ -1,0 +1,154 @@
+<article class="px-4 py-2 shadow-sm rounded" {{on 'click' this.toggleModal}}>
+  <header class="h6">
+    Monumento a la independencia
+  </header>
+  <p>
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore expedita ad laborum nobis voluptatibus sit ipsum nostrum repellendus error molestiae doloremque eaque unde voluptates tenetur magni, molestias atque. Laboriosam, corrupti!
+  </p>
+</article>
+<BsModal
+  @open={{this.modal}}
+  @onHidden={{action (mut this.modal) false}}
+  as |modal|>
+  <modal.header>
+    <h6 class="modal-title">
+      Monumento a la independencia
+    </h6>
+  </modal.header>
+  <modal.body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <BsCarousel
+            class="m-2"
+            @autoPlay={{true}}
+            @wrap={{true}}
+            @index={{0}}
+            @interval={{5000}}
+            @keyboard={{true}}
+            @ltr={{true}}
+            @pauseOnMouseEnter={{true}}
+            @showControls={{true}}
+            @showIndicators={{true}}
+            as |car|>
+            {{#each slides as |slide|}}
+              <car.slide>
+                <img alt={{slide.alt}} src={{slide.src}}>
+              </car.slide>
+            {{/each}}
+          </BsCarousel>
+        </div>
+        <div class="col-12 col-md-4 text-left">
+          <h5>Ficha técnica</h5>
+          <table class="table table-borderless table-sm">
+            <tbody>
+              <tr>
+                <td class="h6">Mark</td>
+                <td>Otto</td>
+              </tr>
+              <tr>
+                <td class="h6">
+                  Etapa:
+                </td>
+                <td>
+                  Finalizada
+                </td>
+              </tr>
+              <tr>
+                <td class="h6">
+                  Inicio:
+                </td>
+                <td>
+                  20/05/2015
+                </td>
+              </tr>
+              <tr>
+                <td class="h6">
+                  Fin:
+                </td>
+                <td>
+                  30/06/2017
+                </td>
+              </tr>
+              <tr>
+                <td class="h6">
+                  Tipo de obra:
+                </td>
+                <td>
+                  Escuelas
+                </td>
+              </tr>
+              <tr>
+                <td class="h6">
+                  Área responsable:
+                </td>
+                <td>
+                  Ministerio de Educación e Innovación
+                </td>
+              </tr>
+              <tr>
+                <td class="h6">
+                  Empresa:
+                </td>
+                <td>
+                  Teximco S.A.
+                </td>
+              </tr>
+              <tr>
+                <td class="h6">
+                  CUIT Empresa:
+                </td>
+                <td>
+                  30640087257
+                </td>
+              </tr>
+              <tr>
+                <td class="h6">
+                  Plazo total:
+                </td>
+                <td>
+                  45 meses
+                </td>
+              </tr>
+              <tr>
+                <td class="h6">
+                  Monto Contrato:
+                </td>
+                <td>
+                  $6.499.921,00
+                </td>
+              </tr>
+              <tr>
+                <td class="h6">
+                  Dirección:
+                </td>
+                <td>
+                  Martín Rodriguez 425
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <LeafletMap @lat={{this.lat}} @lng={{this.lng}} @zoom={{this.zoom}} @onMoveend={{action "updateCenter"}} as |layers|>
+            <layers.tile @url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"/>
+            {{#if this.markerLocation}}
+              <layers.marker @location={{this.markerLocation}} as |marker|>
+                <marker.popup>
+                  <h6>
+                    Monumento a la independencia
+                  </h6>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum dolorem accusamus deleniti optio, sed debitis in perspiciatis quam mollitia quaerat doloribus? Veritatis corporis sint vel magni tempore non nostrum repellat!
+                  </p>
+                </marker.popup>
+              </layers.marker>
+            {{/if}}
+          </LeafletMap>
+        </div>
+      </div>
+    </div>
+  </modal.body>
+</BsModal>
